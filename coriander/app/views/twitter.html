@@ -1,10 +1,18 @@
-<h1 class="page-header">Social Media</h1>
-<h1>tweets</h1>
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li ><a ng-href="#">Home</a></li>
+    <li><a ng-href="#/sunshine">Analytics</a></li>
+    <li class="active"><a ng-href="#/twitter">Social</a></li>
+    <li><a ng-href="#/location">Location</a></li>
+  </ul>
+  <h3 class="text-muted">Social Media</h3>
+</div>
 <div class="row">
 <div class="col-sm-6">
 	<form id="tweet-form" ng-submit="addTweet()">
-		<input id="new-tweet" placeholder="What needs to be done?" ng-model="newTweet" autofocus>
+		<input id="new-tweet" placeholder="Schedule tweets" ng-model="newTweet" autofocus>
 	</form>
+	<p>Add tweets to be sent automatically throught the day</p>
 	<div ng-repeat="tweet in tweets track by $index">
 	{{tweet.message}}
 	</div>
