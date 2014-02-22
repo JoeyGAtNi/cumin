@@ -59,7 +59,7 @@ app.get('/', function (req, res) {
 
 app.post('/rest/v1/pay', function (req, res) {
    var currentTime = (new Date()).getTime();
-   if((currentTime - lastPaidTime)/1000 > 1800){
+   if((currentTime - lastPaidTime)/1000 > 60){
         tweet
       .verifyCredentials(function (err, data) {
         if(err)
