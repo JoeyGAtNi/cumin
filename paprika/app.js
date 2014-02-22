@@ -5,7 +5,7 @@ var io = require('socket.io').listen(server);
 
 var globalPay = 0;
 var globalDeliveries = 0 ;
-var lastPaidTime = new Date();
+var lastPaidTime = (new Date()).getTime();
 
 var twitter = require('ntwitter');
 
@@ -16,6 +16,9 @@ var tweet = new twitter({
     access_token_secret: '11iCPu2fD6roKbZOZ3n06jO3pBqYyJw5qbVKj0QqDCqT4'
 });
 
+io.sockets.on('connection', function(socket) {
+    console.log("initialising socketio ..");
+});
 
 server.listen(3000);
 //io.set( 'origins', '*niwsc.com*:*' );
@@ -38,6 +41,20 @@ app.get('/', function (req, res) {
 
 
 app.post('/rest/v1/pay', function (req, res) {
+   var currentTime = (new Date()).getTime();
+   if((currentTime - lastPaidTime)/1000 > 1800){
+        tweet
+      .verifyCredentials(function (err, data) {
+        if(err)
+          console.log(err);
+      })
+      .updateStatus('Come enjoy a 10% discount on all items !!',
+        function (err, data) {
+          //console.log(data);
+          return res.send("Successul tweet");
+        });
+   }
+   lastPaidTime = currentTime;
    globalPay = globalPay + 1 ;
    io.sockets.emit("pay",globalPay);
    return res.send("pay recorded");
@@ -71,3 +88,4 @@ app.post('/rest/v1/tweet', function (req, res) {
     }
   );
 });
+
