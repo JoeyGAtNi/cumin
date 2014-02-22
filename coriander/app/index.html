@@ -44,8 +44,8 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Reports</a></li>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#/sunshine">Sunshine</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
@@ -73,10 +73,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- build:js scripts/plugins.js -->
-       <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-       <script src='bower_components/angular-bootstrap/ui-bootstrap-tpls.js'></script>
-       <!-- endbuild -->
+
 
        <!-- build:js({.tmp,app}) scripts/postscripts.js -->
        <script src="bower_components/d3/d3.js"></script>
@@ -94,10 +91,14 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    <!-- build:js scripts/plugins.js -->
+       <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+       <script src='bower_components/angular-bootstrap/ui-bootstrap-tpls.js'></script>
+       <!-- endbuild -->
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/sunshine.js"></script>
         <!-- endbuild -->
   
 
