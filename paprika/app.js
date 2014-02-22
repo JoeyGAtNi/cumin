@@ -98,13 +98,14 @@ app.get('/rest/v1/deliver', function (req, res) {
 
 
 app.post('/rest/v1/tweet', function (req, res) {
+    var random = Math.floor((Math.random()*100)+1);
    tweet
   .verifyCredentials(function (err, data) {
     if(err)
       console.log(err);
      
   })
-  .updateStatus('Come enjoy a snow cone in this hot weather !!',
+  .updateStatus('Come enjoy a snow cone in this hot weather !! #'+random,
     function (err, data) {
         if(err)
             console.log(err);
