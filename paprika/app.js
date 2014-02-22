@@ -102,6 +102,8 @@ app.post('/rest/v1/tweet', function (req, res) {
   .verifyCredentials(function (err, data) {
     if(err)
       console.log(err);
+      if(data)
+          console.log(data);
   })
   .updateStatus('Come enjoy a snow cone in this hot weather !!',
     function (err, data) {
