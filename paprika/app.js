@@ -63,12 +63,13 @@ app.post('/rest/v1/pay', function (req, res) {
    console.log("timediff : "+timediff);
    if(timediff > 60){
        console.log("in time difference logic");
+       var random = Math.floor((Math.random()*100)+1);
         tweet
       .verifyCredentials(function (err, data) {
         if(err)
           console.log(err);
       })
-      .updateStatus('Come enjoy a 10% discount on all items !!',
+      .updateStatus('Come enjoy a 10% discount on all items !! #'+random,
         function (err, data) {
           console.log("successfull tweet");
           //return res.send("Successul tweet");
