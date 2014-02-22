@@ -6,18 +6,22 @@ angular.module('corianderApp')
       template: '<highchart id="graph1" config="chartConfig"></highchart>',
       restrict: 'E',
       scope: {
-      	data: '='
+      	data: '=',
+        dataconfig: '='
       },
       link: function postLink(scope, element, attrs) {
-
+        
       scope.chartConfig = {
         options: {
             chart: {
                 type: 'spline'
+            },
+            xAxis: {
+              type: 'datetime'
             }
         },
-        series: [{
-            data: [10, 15, 12, 8, 7]
+        series: [{ name:'trend',
+            data: [0, 1]
         }],
         title: {
             text: 'Sunshine'
@@ -26,20 +30,20 @@ angular.module('corianderApp')
       };
       scope.$watch('data', function(newValue, oldValue) {        
         if (newValue !== oldValue) {
-          console.log(scope.data);
+          
           update(scope.data);
         }
       });
 function update (data) {
-  
+    scope.chartConfig = scope.dataconfig;
       var temp = [];
       var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
-
+      
       data.values.forEach(function (d) {
         temp.push({'x':parseDate(d.at), 'y':parseFloat(d.value)});
       });
       scope.chartConfig.series[0].data = temp;
-      console.log(scope.chartConfig);
+      
 }
       }
     };
