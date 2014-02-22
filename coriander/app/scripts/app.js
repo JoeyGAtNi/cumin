@@ -16,6 +16,10 @@ angular.module('corianderApp', [
         templateUrl: 'views/sunshine.html',
         controller: 'SunshineCtrl'
       })
+      .when('/location', {
+        templateUrl: 'views/location.html',
+        controller: 'LocationCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
