@@ -62,6 +62,7 @@ app.post('/rest/v1/pay', function (req, res) {
    var timediff = (currentTime - lastPaidTime)/1000 ;
    console.log("timediff : "+timediff);
    if(timediff > 60){
+       console.log("in time difference logic");
         tweet
       .verifyCredentials(function (err, data) {
         if(err)
@@ -69,8 +70,8 @@ app.post('/rest/v1/pay', function (req, res) {
       })
       .updateStatus('Come enjoy a 10% discount on all items !!',
         function (err, data) {
-          //console.log(data);
-          return res.send("Successul tweet");
+          console.log("successfull tweet");
+          //return res.send("Successul tweet");
         });
    }
    lastPaidTime = currentTime;
