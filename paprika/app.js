@@ -4,8 +4,8 @@ var server  = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
 var globalPay = 0;
-var orderNumber = 1000;
-var orderList = [];
+//var orderNumber = 1000;
+//var orderList = [];
 var globalDeliveries = 0 ;
 var lastPaidTime = (new Date()).getTime();
 
@@ -49,6 +49,7 @@ app.use(app.router);
 app.use(express.logger("dev"));
 
 app.get('/', function (req, res) {
+    console.log(__dirname);
   res.sendfile(__dirname + '/index.html');
   //return res.send("hello")
 });
@@ -118,7 +119,7 @@ app.post('/rest/v1/sms', function (req, res) {
     return res.send("sms sent");
 });
 
-app.get('/rest/v1/orderlist', function (req, res) {
-  return res.send(""+orderList);
-});
+//app.get('/rest/v1/orderlist', function (req, res) {
+//  return res.send(""+orderList);
+//});
 
