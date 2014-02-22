@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var server  = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+//var io = require('socket.io').listen(server);
 
 var globalPay = 0;
 var orderNumber = 1000;
@@ -26,9 +26,9 @@ var tweet = new twitter({
     access_token_secret: '11iCPu2fD6roKbZOZ3n06jO3pBqYyJw5qbVKj0QqDCqT4'
 });
 
-io.sockets.on('connection', function(socket) {
-    console.log("initialising socketio ..");
-});
+//io.sockets.on('connection', function(socket) {
+//    console.log("initialising socketio ..");
+//});
 
 server.listen(3000);
 //io.set( 'origins', '*niwsc.com*:*' );
@@ -63,12 +63,13 @@ app.post('/rest/v1/pay', function (req, res) {
    console.log("timediff : "+timediff);
    if(timediff > 60){
        console.log("in time difference logic");
+       var random = Math.floor((Math.random()*100)+1);
         tweet
       .verifyCredentials(function (err, data) {
         if(err)
           console.log(err);
       })
-      .updateStatus('Come enjoy a 10% discount on all items !!',
+      .updateStatus('Come enjoy a 10% discount on all items !! #'+random,
         function (err, data) {
           console.log("successfull tweet");
           //return res.send("Successul tweet");
@@ -98,15 +99,21 @@ app.get('/rest/v1/deliver', function (req, res) {
 
 
 app.post('/rest/v1/tweet', function (req, res) {
+    var random = Math.floor((Math.random()*100)+1);
    tweet
   .verifyCredentials(function (err, data) {
     if(err)
       console.log(err);
+     
   })
-  .updateStatus('Come enjoy a snow cone in this hot weather !!',
+  .updateStatus('Come enjoy a snow cone in this hot weather !! #'+random,
     function (err, data) {
-      //console.log(data);
-      return res.send("Successul tweet");
+        if(err)
+            console.log(err);
+        if(err)
+            console.log(data);
+        
+        return res.send("Successul tweet");
     }
   );
 });
