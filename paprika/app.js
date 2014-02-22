@@ -9,6 +9,14 @@ var lastPaidTime = (new Date()).getTime();
 
 var twitter = require('ntwitter');
 
+// Twilio Credentials 
+var accountSid = 'AC3bf75f630d9132bcd7d03300527b0dd3'; 
+var authToken = 'ea04068f880d019e46fb9ce1b19dfa09'; 
+ 
+//require the Twilio module and create a REST client 
+var client = require('twilio')(accountSid, authToken); 
+
+
 var tweet = new twitter({
     consumer_key: 'WSmxqzFIf1JXEhfN34MA',
     consumer_secret: 'CSFnwOUZ20JOgpVWiaVuvtkmC6NybXKYc1vpgfGJEs',
@@ -89,3 +97,13 @@ app.post('/rest/v1/tweet', function (req, res) {
   );
 });
 
+
+app.post('/rest/v1/sms', function (req, res) {
+   client.messages.create({  
+                from: "+18327305605", 
+                body: "Your truck is on fire !!",   
+        }, function(err, message) { 
+                console.log(message.sid); 
+    });
+    return res.send("sms sent");
+});
