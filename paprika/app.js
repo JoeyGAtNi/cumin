@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var server  = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+//var io = require('socket.io').listen(server);
 
 var globalPay = 0;
 var orderNumber = 1000;
@@ -26,9 +26,9 @@ var tweet = new twitter({
     access_token_secret: '11iCPu2fD6roKbZOZ3n06jO3pBqYyJw5qbVKj0QqDCqT4'
 });
 
-io.sockets.on('connection', function(socket) {
-    console.log("initialising socketio ..");
-});
+//io.sockets.on('connection', function(socket) {
+//    console.log("initialising socketio ..");
+//});
 
 server.listen(3000);
 //io.set( 'origins', '*niwsc.com*:*' );
