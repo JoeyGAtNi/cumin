@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('corianderApp')
-.service('Websocket', function Websocket() {
+.service('Websocket', function Websocket($rootScope) {
 	var logLevel = 'debug';
-	var socket = io.connect($rootScope.urlSocket, {query: "authtoken=" + $rootScope.user.authtoken});
+	var socket = io.connect($rootScope.urlSocket);
 	var webSocket = {
 		openConnections: {},
             //adds devices to the device list as they are registered

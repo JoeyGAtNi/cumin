@@ -4,7 +4,9 @@ angular.module('corianderApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'google-maps',
+  'highcharts-ng'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -19,6 +21,10 @@ angular.module('corianderApp', [
       .when('/location', {
         templateUrl: 'views/location.html',
         controller: 'LocationCtrl'
+      })
+      .when('/twitter', {
+        templateUrl: 'views/twitter.html',
+        controller: 'TwitterCtrl'
       })
       .otherwise({
         redirectTo: '/'

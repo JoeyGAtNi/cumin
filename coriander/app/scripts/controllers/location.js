@@ -3,9 +3,18 @@
 angular.module('corianderApp')
   .controller('LocationCtrl', function ($rootScope, $scope, $http) {
 
-  	$scope.location = {};
+  $scope.location = {};
+  $scope.map = {
+      center: {
+          latitude: 45,
+          longitude: -75
+      },
+      zoom: 8
+  };
+
 	var feedId = '3acdd8e136793317418556256294b42d';
-  	var urlFeed = $rootScope.urlM2X + '/feeds/' + feedId + '/location';
+  var urlFeed = $rootScope.urlM2X + '/feeds/' + feedId + '/location';
+
 	$http({
         url: urlFeed,
         method: "GET",
@@ -13,7 +22,15 @@ angular.module('corianderApp')
         headers: {'Content-Type': 'application/json'}
     }).success(function (data) {
     	$scope.location = data;
-    	console.log(data);
+    	
+      $scope.map = {
+          center: {
+              latitude: $scope.location.latitude,
+              longitude: $scope.location.longitude
+          },
+          zoom: 8
+      };
+      console.log($scope.map);
 	    }).error(function (response, status) {
 
 	    });
