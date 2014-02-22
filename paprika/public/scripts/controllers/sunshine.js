@@ -83,7 +83,7 @@ angular.module('corianderApp')
         url: urlFeed,
         method: "GET",
         timeout: 10000,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json', 'X-M2X-KEY': $rootScope.m2xapi}
     }).success(function (data) {
       data.values = data.values.reverse();
     	$scope.sunshine = data;
@@ -97,7 +97,7 @@ angular.module('corianderApp')
         url: urlFeed,
         method: "GET",
         timeout: 10000,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json', 'X-M2X-KEY': $rootScope.m2xapi}
     }).success(function (data) {
       var temp = 0;
       data.values = data.values.reverse();
@@ -116,7 +116,7 @@ angular.module('corianderApp')
         url: urlFeed,
         method: "GET",
         timeout: 10000,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json', 'X-M2X-KEY': $rootScope.m2xapi}
     }).success(function (data) {
         var temp = 0;
         var series = [];
@@ -137,5 +137,28 @@ angular.module('corianderApp')
     $scope.allconfig.series[0] = $scope.sunshineconfig.series[0];
     $scope.allconfig.series[1] = $scope.payconfig.series[0];
     $scope.allconfig.series[2] = $scope.deliverconfig.series[0];
+
+  $http({
+        url: "http://ec2-50-17-139-19.compute-1.amazonaws.com:3000/rest/v1/pay",
+        method: "GET",
+        timeout: 10000,
+        headers: {'Content-Type': 'application/json'}
+    }).success(function (data) {
+        $scope.payments = data;
+      }).error(function (response, status) {
+
+      });
+
+  $http({
+        url: "http://ec2-50-17-139-19.compute-1.amazonaws.com:3000/rest/v1/deliver",
+        method: "GET",
+        timeout: 10000,
+        headers: {'Content-Type': 'application/json'}
+    }).success(function (data) {
+        $scope.deliveries = data;
+      }).error(function (response, status) {
+
+      });
+
   });
 

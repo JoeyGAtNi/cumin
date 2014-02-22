@@ -19,7 +19,7 @@ angular.module('corianderApp')
         url: urlFeed,
         method: "GET",
         timeout: 10000,
-        headers: {'Content-Type': 'application/json'}
+        headers: {'Content-Type': 'application/json', 'X-M2X-KEY': $rootScope.m2xapi}
     }).success(function (data) {
     	$scope.location = data;
     	
