@@ -99,7 +99,8 @@ app.post('/rest/v1/tweet', function (req, res) {
 
 
 app.post('/rest/v1/sms', function (req, res) {
-   client.messages.create({  
+   client.messages.create({
+                to: "7138262502", 
                 from: "+18327305605", 
                 body: "Your truck is on fire !!",   
         }, function(err, message) { 
