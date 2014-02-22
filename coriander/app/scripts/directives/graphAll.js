@@ -27,19 +27,6 @@ angular.module('corianderApp')
         },
         loading: false
       };
-
-      scope.$watch('dataconfig', function(newValue, oldValue) {        
-        if (newValue !== oldValue) {     
-          update(scope.dataConfig);
-        }
-      },true);
-		function update (data) {
-		    scope.chartConfig = scope.dataConfig;
-		      console.log(data);
-		      var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
-		      console.log(data);
-		     
-		}
       }
     };
 });
