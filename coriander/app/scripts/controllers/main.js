@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('corianderApp')
-  .controller('MainCtrl', function ($scope, Websocket) {
+  .controller('MainCtrl', function ($scope) {
 
-  	Websocket.connectPay();
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
