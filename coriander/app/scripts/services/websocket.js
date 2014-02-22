@@ -65,5 +65,6 @@ angular.module('corianderApp')
 			}
 			});
 		}
+	}
 return webSocket;
 });
