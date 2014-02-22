@@ -67,11 +67,11 @@ angular.module('corianderApp')
               type: 'datetime'
             }
         },
-        series: [{name:'all',
+        series: [{ name:'trend',
             data: [0, 1]
         }],
         title: {
-            text: 'Sunshine'
+            text: 'All'
         },
         loading: false
       };
@@ -118,17 +118,24 @@ angular.module('corianderApp')
         timeout: 10000,
         headers: {'Content-Type': 'application/json'}
     }).success(function (data) {
-      var temp = 0;
-      var series = [];
-      data.values = data.values.reverse();
-      data.values.forEach(function (d) {
-        temp = temp + parseFloat(d.value);
+        var temp = 0;
+        var series = [];
+        data.values = data.values.reverse();
+        data.values.forEach(function (d) {
+          temp = temp + parseFloat(d.value);
           d.value = temp;
-      });
-      $scope.deliver = data;
-      series.push()
+        });
+        $scope.deliver = data;
+        // series.push({name:'paid',data:$scope.pay});
+        // series.push({name:'delivered',data:$scope.deliver});
+        // series.push({name:'sunshine',data:$scope.sunshine});
+        // $scope.all.series = series;
+        //console.log(series);
       }).error(function (response, status) {
 
       });
-
+    $scope.allconfig.series[0] = $scope.sunshineconfig.series[0];
+    $scope.allconfig.series[1] = $scope.payconfig.series[0];
+    $scope.allconfig.series[2] = $scope.deliverconfig.series[0];
   });
+

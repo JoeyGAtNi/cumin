@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('corianderApp')
-  .directive('graph', function () {
+  .directive('graphAll', function () {
     return {
-      template: '<highchart id="graph1" config="chartConfig"></highchart>',
+      template: '<highchart id="graphall" config="dataconfig"></highchart>',
       restrict: 'E',
       scope: {
-      	data: '=',
         dataconfig: '='
       },
       link: function postLink(scope, element, attrs) {
@@ -28,22 +27,19 @@ angular.module('corianderApp')
         },
         loading: false
       };
-      scope.$watch('data', function(newValue, oldValue) {        
+
+      scope.$watch('dataconfig', function(newValue, oldValue) {        
         if (newValue !== oldValue) {     
-          update(scope.data);
+          update(scope.dataConfig);
         }
-      });
-function update (data) {
-    scope.chartConfig = scope.dataconfig;
-      var temp = [];
-      var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
-      
-      data.values.forEach(function (d) {
-        temp.push({'x':parseDate(d.at), 'y':parseFloat(d.value)});
-      });
-      scope.chartConfig.series[0].data = temp;
-      
-}
+      },true);
+		function update (data) {
+		    scope.chartConfig = scope.dataConfig;
+		      console.log(data);
+		      var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
+		      console.log(data);
+		     
+		}
       }
     };
-  });
+});
