@@ -4,6 +4,8 @@ var server  = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
 var globalPay = 0;
+var orderNumber = 1000;
+var orderList = [];
 var globalDeliveries = 0 ;
 var lastPaidTime = (new Date()).getTime();
 
@@ -69,6 +71,8 @@ app.post('/rest/v1/pay', function (req, res) {
    }
    lastPaidTime = currentTime;
    globalPay = globalPay + 1 ;
+   orderNumber = orderNumber + 1;
+   orderList.push(orderNumber);
    io.sockets.emit("pay",globalPay);
    return res.send("pay recorded");
 });
@@ -112,4 +116,8 @@ app.post('/rest/v1/sms', function (req, res) {
                 console.log(message.sid); 
     });
     return res.send("sms sent");
+});
+
+app.get('/rest/v1/orderlist', function (req, res) {
+  return res.send(""+orderList);
 });
