@@ -12,18 +12,18 @@ var lastPaidTime = (new Date()).getTime();
 var twitter = require('ntwitter');
 
 // Twilio Credentials 
-var accountSid = 'AC3bf75f630d9132bcd7d03300527b0dd3'; 
-var authToken = 'ea04068f880d019e46fb9ce1b19dfa09'; 
+var accountSid = 'XXXXXX'; 
+var authToken = 'YYYYYYYYYY'; 
  
 //require the Twilio module and create a REST client 
 var client = require('twilio')(accountSid, authToken); 
 
 
 var tweet = new twitter({
-    consumer_key: 'WSmxqzFIf1JXEhfN34MA',
-    consumer_secret: 'CSFnwOUZ20JOgpVWiaVuvtkmC6NybXKYc1vpgfGJEs',
-    access_token_key: '2355666296-oROjxw2YO7ZtzIdD03PYHHbLc9t4A0mUO1yUdhK',
-    access_token_secret: '11iCPu2fD6roKbZOZ3n06jO3pBqYyJw5qbVKj0QqDCqT4'
+    consumer_key: 'XXXXX',
+    consumer_secret: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+    access_token_key: 'xxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    access_token_secret: 'xxxxxx-xxxxxxx'
 });
 
 //io.sockets.on('connection', function(socket) {
